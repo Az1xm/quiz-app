@@ -88,7 +88,7 @@ function showQuestion() {
                 } else {
                     questionElement.textContent = "Quiz Complete!";
                     answersElement.innerHTML = "";
-                    answersElement.innerHTML = <p>Your score: ${score} / ${questions.length}</p>;
+                    answersElement.innerHTML = `<p>Your score: ${score} / ${questions.length}</p>`;
                 }
 
             }, 1000);
