@@ -5,6 +5,7 @@ const questionElement = document.querySelector("#question");
 const answersElement = document.querySelector("#answers");
 
 let currentQuestion = 0;
+let score = 0;
 
 const questions = [
     {
