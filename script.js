@@ -47,13 +47,26 @@ startButton.addEventListener("click", function () {
     quizScreen.style.display = "block";
 
   questionElement.textContent = questions[currentQuestion].question;
+questions[currentQuestion].answers.forEach(function (answer) {
 
-    questions[currentQuestion].answers.forEach(function (answer) {
+    const button = document.createElement("button");
 
-        const button = document.createElement("button");
+    button.textContent = answer;
 
-        button.textContent = answer;
+    button.addEventListener("click", function () {
 
-        answersElement.appendChild(button);
+        const correctAnswer =
+            questions[currentQuestion].correctAnswer;
+
+        if (answer === correctAnswer) {
+            button.style.backgroundColor = "green";
+        } else {
+            button.style.backgroundColor = "red";
+        }
+
+        alert("Correct answer: " + correctAnswer);
     });
+
+    answersElement.appendChild(button);
+});
 });
