@@ -41,32 +41,66 @@ const questions = [
     }
 ];
 
+function showQuestion() {
+
+    answersElement.innerHTML = "";
+
+    questionElement.textContent =
+        questions[currentQuestion].question;
+
+    questions[currentQuestion].answers.forEach(function (answer) {
+
+        const button = document.createElement("button");
+
+        button.textContent = answer;
+
+        button.addEventListener("click", function () {
+
+            const correctAnswer =
+                questions[currentQuestion].correctAnswer;
+
+            const allButtons =
+                answersElement.querySelectorAll("button");
+
+            allButtons.forEach(function (btn) {
+
+                btn.disabled = true;
+
+                if (btn.textContent === correctAnswer) {
+                    btn.style.backgroundColor = "green";
+                }
+
+            });
+
+            if (answer !== correctAnswer) {
+                button.style.backgroundColor = "red";
+            }
+
+            setTimeout(function () {
+
+                currentQuestion++;
+
+                if (currentQuestion < questions.length) {
+                    showQuestion();
+                } else {
+                    questionElement.textContent = "Quiz Complete!";
+                    answersElement.innerHTML = "";
+                }
+
+            }, 1000);
+
+        });
+
+        answersElement.appendChild(button);
+
+    });
+}
+
 startButton.addEventListener("click", function () {
 
     startScreen.style.display = "none";
     quizScreen.style.display = "block";
 
-  questionElement.textContent = questions[currentQuestion].question;
-questions[currentQuestion].answers.forEach(function (answer) {
+    showQuestion();
 
-    const button = document.createElement("button");
-
-    button.textContent = answer;
-
-    button.addEventListener("click", function () {
-
-        const correctAnswer =
-            questions[currentQuestion].correctAnswer;
-
-        if (answer === correctAnswer) {
-            button.style.backgroundColor = "green";
-        } else {
-            button.style.backgroundColor = "red";
-        }
-
-        alert("Correct answer: " + correctAnswer);
-    });
-
-    answersElement.appendChild(button);
-});
 });
