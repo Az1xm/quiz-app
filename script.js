@@ -73,9 +73,11 @@ function showQuestion() {
 
             });
 
-            if (answer !== correctAnswer) {
-                button.style.backgroundColor = "red";
-            }
+         if (answer === correctAnswer) {
+    score++;
+} else {
+    button.style.backgroundColor = "red";
+}
 
             setTimeout(function () {
 
